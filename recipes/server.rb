@@ -7,11 +7,9 @@
 
 package 'httpd'
 
-file '/var/www/html/index.html' do
-  content "<h1>Hello, world!</h1>
-  <h2>IPADDRESS: #{ node['ipaddress'] }</h2>
-  <h2>HOSTNAME: #{ node['hostname'] }</h2>
-"
+template '/var/www/html/index.html' do
+  source 'index.html.erb'
+  action :create
 end
 
 service 'httpd' do
